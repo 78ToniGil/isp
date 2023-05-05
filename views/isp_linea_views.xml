@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <!-- Creamos la vista formulario -->
+    <record id="isp_linea_form" model="ir.ui.view">
+        <field name="name">view.isp_linea.form</field>
+        <field name="model">isp.linea</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="estado" widget="statusbar" statusbar_visible="00,01,02,03,04,05"/>
+                </header>
+                <sheet>
+                    <div class="oe_tittle">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="fecha_alta"/>
+                            <field name="fecha_baja"/>
+                            <field name="partner_id"/>
+                            <field name="iccid"/>
+                        </group>
+                        <group>
+                            <field name="tarifa"/>
+                            <field name="operador"/>
+                            <field name="puk"/>
+                            <field name="fup"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Creamos la vista tree -->
+    <record id="isp_linea_tree" model="ir.ui.view">
+        <field name="name">view.isp_linea.tree</field>
+        <field name="model">isp.linea</field>
+        <field name="arch" type="xml">
+            <tree string="Lineas">
+                <field name="secuencia" widget="handle"/>
+                <field name="name"/>
+                <field name="operador"/>
+                <field name="partner_id"/>
+                <field name="estado"/>
+                <field name="iccid"/>
+                <field name="puk" optional="hide"/>
+                <field name="fup" optional="hide"/>
+                <field name="fecha_alta" optional="show"/>
+                <field name="fecha_baja" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Creamos la vista search -->
+    <record id="isp_linea_search" model="ir.ui.view">
+        <field name="name">view.isp_linea.search</field>
+        <field name="model">isp.linea</field>
+        <field name="arch" type="xml">
+            <search string="Lineas">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <filter string="Alta" name="filtro_de_estado" domain="[('estado','=', '01')]"/>
+                <filter string="Partner" name="partner" context="{'group_by':'partner_id'}"/>
+            </search>
+        </field>
+    </record>
+
+
+    <!-- Creamos la acción -->
+    <record id="isp_linea_action" model="ir.actions.act_window">
+        <field name="name">Isp Lineas</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">isp.linea</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crea una línea nueva
+            </p>
+        </field>
+    </record>
+
+    <!-- Creamos el menú -->
+    <!-- Este aparece en el menú principal -->
+    <menuitem id="isp_menu" name="ISP" sequence="10"/>
+    <!-- Este aparece dentro del menú ISP, por el parent enlazado y ejecuta la acción, por el action enlazado -->
+    <menuitem id="isp_linea_open" name="Líneas" sequence="10" parent="isp_menu" action="isp_linea_action"/>
+
+</odoo>

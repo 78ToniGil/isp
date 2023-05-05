@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+isp.access_isp_line_user,access_isp_line_user,isp.model_isp_linea,isp.res_groups_isp_user,1,0,1,0
+isp.access_isp_line_manager,access_isp_line_manager,isp.model_isp_linea,isp.res_groups_isp_manager,1,1,1,1
