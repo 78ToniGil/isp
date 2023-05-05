@@ -60,7 +60,7 @@ class IspFibra(models.Model):
         string = 'Fin Permanencia'
     )
 
-    @api.depends('permanencia')
+    @api.depends('permanencia', 'fecha_alta')
     def _compute_permanencia(self):
         for record in self:
             if record.permanencia == '12':
