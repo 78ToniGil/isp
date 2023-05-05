@@ -1,5 +1,5 @@
 from odoo import fields, models, api
-from datetime import timedelta
+from datetime import timedelta, datetime
 
 class IspFibra(models.Model):
     _name = "isp.fibra"
@@ -28,7 +28,8 @@ class IspFibra(models.Model):
     )
 
     fecha_alta = fields.Datetime(
-        string = 'Fecha Alta'
+        string = 'Fecha Alta',
+        default = datetime.now()
     )
     fecha_baja = fields.Datetime(
         string = 'Fecha Baja'
