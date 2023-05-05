@@ -21,7 +21,7 @@
                         <group>
                             <field name="fecha_alta"/>
                             <field name="fecha_baja"/>
-                            <field name="partner_id"/>
+                            <field name="partner_id" options="{'no_quick_create': True}"/>
                             <field name="iccid"/>
                         </group>
                         <group>
@@ -42,10 +42,10 @@
         <field name="model">isp.linea</field>
         <field name="arch" type="xml">
             <tree string="Lineas">
-                <field name="secuencia" widget="handle"/>
                 <field name="name"/>
                 <field name="operador"/>
                 <field name="partner_id"/>
+                <field name="tarifa"/>
                 <field name="estado"/>
                 <field name="iccid"/>
                 <field name="puk" optional="hide"/>
@@ -73,7 +73,7 @@
 
     <!-- Creamos la acción -->
     <record id="isp_linea_action" model="ir.actions.act_window">
-        <field name="name">Isp Lineas</field>
+        <field name="name">Líneas</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">isp.linea</field>
         <field name="view_mode">tree,form</field>
@@ -86,7 +86,7 @@
 
     <!-- Creamos el menú -->
     <!-- Este aparece en el menú principal -->
-    <menuitem id="isp_menu" name="ISP" sequence="10"/>
+    <menuitem id="isp_menu" name="Telefonía" sequence="10"/>
     <!-- Este aparece dentro del menú ISP, por el parent enlazado y ejecuta la acción, por el action enlazado -->
     <menuitem id="isp_linea_open" name="Líneas" sequence="10" parent="isp_menu" action="isp_linea_action"/>
 
