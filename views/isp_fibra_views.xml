@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+    <!-- Creamos la vista formulario -->
+    <record id="isp_fibra_form" model="ir.ui.view">
+        <field name="name">view.isp_fibra.form</field>
+        <field name="model">isp.fibra</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_tittle">
+                        <h1>
+                            <field name="partner_id" options="{'no_quick_create': True}"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <field name="tarifa"/>
+                        <field name="fecha_alta"/>
+                        <field name="fecha_baja"/>
+                        <field name="estado"/>
+                        <field name="permanencia"/>
+                        <field name="fin_permanencia"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Creamos la vista tree -->
+    <record id="isp_fibra_tree" model="ir.ui.view">
+        <field name="name">view.isp_fibra.tree</field>
+        <field name="model">isp.fibra</field>
+        <field name="arch" type="xml">
+            <tree string="Fibras">
+                <field name="tarifa"/>
+                <field name="partner_id"/>
+                <field name="fecha_alta"/>
+                <field name="fecha_baja"/>
+                <field name="estado"/>
+                <field name="fin_permanencia"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Creamos la vista search -->
+    <record id="isp_fibra_search" model="ir.ui.view">
+        <field name="name">view.isp_fibra.search</field>
+        <field name="model">isp.fibra</field>
+        <field name="arch" type="xml">
+            <search string="Fibras">
+                <field name="partner_id"/>
+                <filter string="Alta" name="filtro_de_estado" domain="[('estado','=', '01')]"/>
+                <filter string="Partner" name="partner" context="{'group_by':'partner_id'}"/>
+            </search>
+        </field>
+    </record>
+
+
+    <!-- Creamos la acción -->
+    <record id="isp_fibra_action" model="ir.actions.act_window">
+        <field name="name">Fibras</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">isp.fibra</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Crea una fibra nueva
+            </p>
+        </field>
+    </record>
+
+    <!-- Creamos el menú -->
+
+    <!-- Este aparece dentro del menú ISP, por el parent enlazado y ejecuta la acción, por el action enlazado -->
+    <menuitem id="isp_fibra_open" name="Fibras" sequence="10" parent="isp_menu" action="isp_fibra_action"/>
+
+</odoo>
