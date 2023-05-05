@@ -15,7 +15,7 @@
                         </h1>
                     </div>
                     <group>
-                        <field name="tarifa"/>
+                        <field name="name"/>
                         <field name="fecha_alta"/>
                         <field name="fecha_baja"/>
                         <field name="estado"/>
@@ -33,7 +33,7 @@
         <field name="model">isp.fibra</field>
         <field name="arch" type="xml">
             <tree string="Fibras">
-                <field name="tarifa"/>
+                <field name="name"/>
                 <field name="partner_id"/>
                 <field name="fecha_alta"/>
                 <field name="fecha_baja"/>

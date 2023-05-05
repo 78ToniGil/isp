@@ -10,7 +10,7 @@ class IspFibra(models.Model):
         string = 'Titular'
     )
 
-    tarifa = fields.Selection(
+    name = fields.Selection(
         selection = [
         ('S150', 'Fibra 150 Mbps'),
         ('S300', 'Fibra 300 Mbps'),
