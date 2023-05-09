@@ -16,6 +16,7 @@
         "security/isp_security.xml",
         "security/ir.model.access.csv",
         "views/isp_linea_views.xml",
-        "views/isp_fibra_views.xml"
+        "views/isp_fibra_views.xml",
+        "static/description/icon.png"
     ],
 }
