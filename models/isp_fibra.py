@@ -22,6 +22,9 @@ class IspFibra(models.Model):
         ('V100', 'Vodafone 100 Mbps'),
         ('V300', 'Vodafone 300 Mbps'),
         ('V600', 'Vodafone 600 Mbps'),
+        ('A300', 'Avanza 300 Mbps'),
+        ('A600', 'Avanza 600 Mbps'),
+        ('A1000', 'Avanza 1000 Mbps'),
         ],
         required = True,
         string = 'Tarifa'

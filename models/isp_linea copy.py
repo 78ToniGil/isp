@@ -1,5 +1,5 @@
 from odoo import fields, models, api
-from zeep import Client
+from pysimplesoap.client import SoapClient
 
 class IspLinea(models.Model):
     _name = "isp.linea"
@@ -105,28 +105,47 @@ class IspLinea(models.Model):
 
     @api.model
     def import_lineas_from_api(self):
-        # Configuración para la conexión SOAP
-        WSDL_URL = 'https://wscliente.airenetworks.es/ws_desarrollo/mv/gestMOVIL_2.php?wsdl'
-        params = {
+        # Credenciales de la API
+        params= {
             "user": "B16911893",
-            "pass": "im6Njghd8GezCr",
-            "pagina": 1,
-            "registro": 10
-            }
+            "pass": "im6Njghd8GezCr"
+        }
+
+        # Creación del cliente SOAP
+        client = SoapClient(
+            location="https://wscliente.airenetworks.es/ws_desarrollo/mv/gestMOVIL_2.php?wsdl",
+            namespace='http://tempuri.org',
+            timeout=60,
+            soap_ns="soapenv",
+            trace=False,
+        )
+
+        # Llamada al método SOAP
+        response = client.call("getLineas", datos=params)
         
-        # Crear el cliente Zeep para el servicio SOAP
-        client = Client(WSDL_URL)
-
-        # Llamar al método del servicio SOAP
-        response = client.service.getLineas(datos = params)
-
-        # Procesar la respuesta
-        # Asumiendo que la respuesta tiene una estructura similar a la que vimos anteriormente
-        if response and response.get('resultado') == '0':
-            lineas = response.get('lineas', [])
-            for linea_data in lineas:
-                # Aquí procesas y guardas cada línea en la base de datos de Odoo
-                pass
-        else:
-            # Manejar errores aquí
-            pass
+        # Eliminar esta comprobación cuando funciones
+        print("Respuesta de la API", response)
+        
+        # Comprobar respuesta y procesar datos
+        if response and 'linea' in response:
+            for data_linea in response['linea']:
+                # Buscamos si la línea ya existe en base a su número
+                existing_linea = self.env['isp.linea'].search([('numero', '=', data_linea['numero'])], limit=1)
+                
+                vals = {
+                    'numero': data_linea['numero'],
+                    'nombre': data_linea['nombre'],
+                    'estado': data_linea['estado'],
+                    'tipo': data_linea['tipo'],
+                    'plan': data_linea['plan'],
+                    'fecha_alta': data_linea['fechaAlta'],
+                    'fecha_baja': data_linea['fechaBaja'],
+                    # ... (otros campos según corresponda)
+                }
+                
+                if existing_linea:
+                    # Si la línea ya existe, la actualizamos
+                    existing_linea.write(vals)
+                else:
+                    # Si no existe, creamos una nueva línea
+                    self.env['isp.linea'].create(vals)

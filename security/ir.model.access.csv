@@ -3,3 +3,5 @@ isp.access_isp_line_user,access_isp_line_user,isp.model_isp_linea,isp.res_groups
 isp.access_isp_fiber_user,access_isp_fiber_user,isp.model_isp_fibra,isp.res_groups_isp_user,1,0,1,0
 isp.access_isp_line_manager,access_isp_line_manager,isp.model_isp_linea,isp.res_groups_isp_manager,1,1,1,1
 isp.access_isp_fiber_manager,access_isp_fiber_manager,isp.model_isp_fibra,isp.res_groups_isp_manager,1,1,1,1
+isp.access_isp_linea_cdr_user,access_isp_linea_cdr_user,isp.model_isp_linea_cdr,isp.res_groups_isp_user,1,0,1,0
+isp.access_isp_linea_cdr_manager,access_isp_linea_cdr_manager,isp.model_isp_linea_cdr,isp.res_groups_isp_manager,1,1,1,1

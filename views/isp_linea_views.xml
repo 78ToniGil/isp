@@ -31,6 +31,23 @@
                             <field name="fup"/>
                         </group>
                     </group>
+                    <!-- Pestaña para visualizar los CDRs asociados a la línea -->
+                    <notebook>
+                        <page string="CDRs">
+                            <field name="cdr_ids" readonly="1">
+                                <tree>
+                                    <field name="tipo_cdr"/>
+                                    <field name="fecha"/>
+                                    <field name="hora"/>
+                                    <field name="origen_numero"/>
+                                    <field name="destino_numero"/>
+                                    <field name="tipo_llamada"/>
+                                    <field name="duracion_segundos"/>
+                                    <field name="importe"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>
@@ -86,7 +103,7 @@
 
     <!-- Creamos el menú -->
     <!-- Este aparece en el menú principal -->
-    <menuitem id="isp_menu" name="Telefonía" sequence="10"/>
+    <menuitem id="isp_menu" name="Telefonía" sequence="10" web_icon="isp,static/description/icon.png"/>
     <!-- Este aparece dentro del menú ISP, por el parent enlazado y ejecuta la acción, por el action enlazado -->
     <menuitem id="isp_linea_open" name="Líneas" sequence="10" parent="isp_menu" action="isp_linea_action"/>
 
