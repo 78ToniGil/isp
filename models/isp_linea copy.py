@@ -107,8 +107,8 @@ class IspLinea(models.Model):
     def import_lineas_from_api(self):
         # Credenciales de la API
         params= {
-            "user": "B16911893",
-            "pass": "im6Njghd8GezCr"
+            "user": "usuario",
+            "pass": "contraseña"
         }
 
         # Creación del cliente SOAP
