@@ -108,8 +108,8 @@ class IspLinea(models.Model):
         # Configuración para la conexión SOAP
         WSDL_URL = 'https://wscliente.airenetworks.es/ws_desarrollo/mv/gestMOVIL_2.php?wsdl'
         params = {
-            "user": "B16911893",
-            "pass": "im6Njghd8GezCr",
+            "user": "usuario",
+            "pass": "contraseña",
             "pagina": 1,
             "registro": 10
             }
